@@ -1,6 +1,7 @@
 package testutils
 
 import (
+	"fmt"
 	"strings"
 
 	errorutils "github.com/projectdiscovery/utils/errors"
@@ -16,11 +17,13 @@ type TestCase struct {
 
 var TestCases = []TestCase{
 	{
-		Name: "Headless Browser Without Incognito",
+		Name:     "Headless Browser Without Incognito",
 		Target:   "https://www.hackerone.com/",
 		Expected: nil,
 		Args:     "-headless -no-incognito -depth 2 -silent",
 		CompareFunc: func(target string, got []string) error {
+			fmt.Println("got: ", got[0])
+			fmt.Println(strings.Contains(got[0], target))
 			if strings.Contains(got[0], target) && len(got) > 10 {
 				return nil
 			}
