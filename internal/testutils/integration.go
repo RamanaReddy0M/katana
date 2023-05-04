@@ -16,6 +16,7 @@ func RunKatanaBinaryAndGetResults(target string, katanaBinary string, debug bool
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println("data: ", string(data))
 	parts := []string{}
 	items := strings.Split(string(data), "\n")
 	for _, i := range items {
